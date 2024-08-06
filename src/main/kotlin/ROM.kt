@@ -10,14 +10,23 @@ class ROM : Memory() {
 
     @OptIn(ExperimentalUnsignedTypes::class)
     override fun loadROM() {
-        println("Type in the path to the rom file:")
+        println("Path to ROM file:")
         val path = readln()
-        var position = 0
         val path2 = Paths.get(path)
+
+        // Read all bytes from the file into a ByteArray
         val bytes = Files.readAllBytes(path2)
-        bytes.forEach {
-            data[position] = it.toUByte()
-            position ++
+
+        // Ensure we do not exceed the bounds of the data array
+        val endPosition = minOf(data.size, bytes.size)
+
+        // Copy bytes into the data array
+        for (position in bytes.indices) {
+            if (position < endPosition) {
+                data[position] = bytes[position].toUByte()
+            } else {
+                break
+            }
         }
     }
 }

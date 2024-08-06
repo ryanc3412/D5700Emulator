@@ -13,18 +13,16 @@ class Display {
     }
 
     fun sendToConsole(){
-        println("|--------|")
         for (row in displayArray) {
-            print("|")
             row.forEach {
                 if (it != null) {
                     print(it)
                 } else {
-                    print(" ")
+                    print(Char(0))
                 }
             }
-            println("|")
+            println("")
         }
-        println("|--------|")
+        println("\n")
     }
 }

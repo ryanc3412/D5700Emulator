@@ -21,7 +21,7 @@ class ReadKeyboard(
 
     override fun performOperation() {
         require(s[0] == 6u) { "" }
-        println("Enter a valid input: \n")
+        println("Enter a valid input: ")
         val userInput = readLine()
         if(hexadecimalChecker(userInput)) {
             if (userInput == null) {
